@@ -1,10 +1,10 @@
 # Nethserver DigitalOcean snapshot generator
 
-Generate a base Nethserver 7.5 image that can be used for create new droplets.
+Generate a base Nethserver image that can be used for create new droplets.
 
 **WARNING**
 
-The builded image in not updated, so must be manually update or enable automatic
+The builded image is not updated, so must be manually update or enable automatic
 updates before use for production.
 
 ## Requirements
