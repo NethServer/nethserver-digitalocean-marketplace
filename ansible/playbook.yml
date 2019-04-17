@@ -12,6 +12,11 @@
         src: nethserver-networks-init
         dest: /var/lib/cloud/scripts/per-instance/
         mode: 0755
+    - name: Copy system init script
+      copy:
+        src: nethserver-system-init
+        dest: /var/lib/cloud/scripts/per-once/
+        mode: 0755
     - name: Cleanup files
       file:
         path: "{{ item }}"
