@@ -7,7 +7,17 @@
         name: http://mirror.nethserver.org/nethserver/nethserver-release-7.rpm
     - name: Install NethServer base system
       command: /sbin/nethserver-install
-    - name: Remove yum uuid
+    - name: Cleanup files
       file:
-        path: /var/lib/yum/uuid
+        path: "{{ item }}"
         state: absent
+      with_items:
+        - /root/.ssh/authorized_keys
+        - /var/lib/yum/uuid
+        - /var/log/nethserver-install.log
+        - /var/log/cloud-init.log
+        - /var/log/shorewall-init.log
+        - /var/log/cloud-init.log
+        - /var/log/firewall.log
+        - /var/log/shorewall-init.log
+        - /var/log/yum.log
