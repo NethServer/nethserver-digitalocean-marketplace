@@ -35,3 +35,12 @@
         - /var/log/firewall.log
         - /var/log/shorewall-init.log
         - /var/log/yum.log
+    - name: Download DigitalOcean Marketplace Image Validation Tool
+      get_url:
+        url: "https://github.com/digitalocean/marketplace-partners/releases/download/{{ version }}/img_check.sh"
+        dest: /tmp/
+        mode: 0700
+      vars:
+        version: 1.1
+    - name: Execute DigitalOcean Marketplace Image Validation Tool
+      command: /tmp/img_check.sh
