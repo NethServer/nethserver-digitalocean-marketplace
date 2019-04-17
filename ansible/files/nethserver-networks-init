@@ -1,0 +1,6 @@
+#! /bin/bash
+
+> /var/lib/nethserver/db/networks
+
+/etc/e-smith/events/actions/nethserver-base-initialize-db
+/sbin/e-smith/signal-event interface-update

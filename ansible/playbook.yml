@@ -7,6 +7,11 @@
         name: http://mirror.nethserver.org/nethserver/nethserver-release-7.rpm
     - name: Install NethServer base system
       command: /sbin/nethserver-install
+    - name: Copy networks init script
+      copy:
+        src: nethserver-networks-init
+        dest: /var/lib/cloud/scripts/per-instance/
+        mode: 0755
     - name: Cleanup files
       file:
         path: "{{ item }}"
