@@ -7,6 +7,10 @@
         name: http://mirror.nethserver.org/nethserver/nethserver-release-7.rpm
     - name: Install NethServer base system
       command: /sbin/nethserver-install
+    - name: Update system
+      yum:
+        name: '*'
+        state: latest
     - name: Copy networks init script
       copy:
         src: nethserver-networks-init
