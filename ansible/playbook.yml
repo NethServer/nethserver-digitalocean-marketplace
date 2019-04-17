@@ -7,11 +7,6 @@
         name: http://mirror.nethserver.org/nethserver/nethserver-release-7.rpm
     - name: Install NethServer base system
       command: /sbin/nethserver-install
-    - block:
-      - name: Disable first config wirzard
-        command: /sbin/e-smith/config setprop httpd-admin ForcedLoginModule ''''
-      - name: signal-event nethserver-httpd-admin-update
-        command: /sbin/e-smith/signal-event nethserver-httpd-admin-update
     - name: Remove yum uuid
       file:
         path: /var/lib/yum/uuid
