@@ -1,7 +1,8 @@
 #! /bin/bash
 
 rm -f /etc/pki/tls/certs/NSRV.crt /etc/pki/tls/private/NSRV.key
-rm -f /etc/ssh/ssh_host_*
 /etc/e-smith/events/actions/nethserver-generate-certificate
 /sbin/e-smith/signal-event certificate-update
 
+rm -f /etc/ssh/ssh_host_*
+systemctl restart sshd
