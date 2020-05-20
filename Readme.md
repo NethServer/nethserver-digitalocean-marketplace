@@ -1,11 +1,6 @@
-# Nethserver DigitalOcean snapshot generator
+# NethServer DigitalOcean Marketplace Image
 
-Generate a base Nethserver image that can be used for create new droplets.
-
-**WARNING**
-
-The builded image is not updated, so must be manually update or enable automatic
-updates before use for production.
+Generate a base Nethserver image for the DigitalOcean Marketplace.
 
 ## Requirements
 
