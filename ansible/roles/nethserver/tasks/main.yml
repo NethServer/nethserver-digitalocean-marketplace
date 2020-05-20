@@ -45,7 +45,7 @@
 
 - name: Download DigitalOcean Marketplace Image Validation Tool
   get_url:
-    url: https://raw.githubusercontent.com/digitalocean/marketplace-partners/master/scripts/img_check.sh
+    url: https://raw.githubusercontent.com/Amygos/marketplace-partners/ns7_hack/scripts/img_check.sh
     dest: /tmp/
     mode: 0700
 
