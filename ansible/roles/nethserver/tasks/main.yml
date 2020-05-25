@@ -66,6 +66,14 @@
   shell: "dd if=/dev/zero of=/zerofile ; sync; rm /zerofile; sync"
   ignore_errors: yes
 
+- name: Truncate lastlog and wtmp
+  copy:
+    content: ""
+    dest: "{{ item }}"
+  with_items:
+    - /var/log/lastlog
+    - /var/log/wtmp
+
 - name: Download DigitalOcean Marketplace Image Validation Tool
   get_url:
     url: https://raw.githubusercontent.com/Amygos/marketplace-partners/ns7_hack/scripts/img_check.sh
