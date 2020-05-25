@@ -61,6 +61,11 @@
     mode: 0600
     state: touch
 
+# Suggested by https://github.com/digitalocean/marketplace-partners/blob/master/scripts/cleanup.sh
+- name: Secure rewrite of the free disk space
+  shell: "dd if=/dev/zero of=/zerofile ; sync; rm /zerofile; sync"
+  ignore_errors: yes
+
 - name: Download DigitalOcean Marketplace Image Validation Tool
   get_url:
     url: https://raw.githubusercontent.com/Amygos/marketplace-partners/ns7_hack/scripts/img_check.sh
