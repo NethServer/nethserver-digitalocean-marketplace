@@ -82,3 +82,8 @@
 
 - name: Execute DigitalOcean Marketplace Image Validation Tool
   command: /tmp/img_check.sh
+
+- name: Remove DigitalOcean Marketplace Image Validation Tool
+  file:
+    path: /tmp/img_check.sh
+    state: absent
