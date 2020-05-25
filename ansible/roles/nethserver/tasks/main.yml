@@ -55,6 +55,12 @@
     - "/var/lib/cloud/instances/*"
     - "/etc/ssh/*key*"
 
+- name: Clean up ssh revoked keys
+  file:
+    path: /etc/ssh/revoked_keys
+    mode: 0600
+    state: touch
+
 - name: Download DigitalOcean Marketplace Image Validation Tool
   get_url:
     url: https://raw.githubusercontent.com/Amygos/marketplace-partners/ns7_hack/scripts/img_check.sh
