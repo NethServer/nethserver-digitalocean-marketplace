@@ -28,6 +28,11 @@
     path: /var/lib/cloud/sem/config_scripts_per_once.once
     state: absent
 
+- name: Cleanup yum cache
+  command: yum clean all
+  args:
+    warn: false
+
 - name: Cleanup files
   file:
     path: "{{ item }}"
