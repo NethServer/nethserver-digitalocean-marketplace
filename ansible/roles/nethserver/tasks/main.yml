@@ -47,6 +47,13 @@
     - /var/log/firewall.log
     - /var/log/shorewall-init.log
     - /var/log/yum.log
+    - "/tmp/*"
+    - "/var/tmp/*"
+    - "/var/log/*.gz"
+    - "/var/log/*.[0-9]"
+    - "/var/log/*-????????"
+    - "/var/lib/cloud/instances/*"
+    - "/etc/ssh/*key*"
 
 - name: Download DigitalOcean Marketplace Image Validation Tool
   get_url:
