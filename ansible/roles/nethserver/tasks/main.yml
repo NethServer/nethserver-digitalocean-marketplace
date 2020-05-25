@@ -82,4 +82,3 @@
 
 - name: Execute DigitalOcean Marketplace Image Validation Tool
   command: /tmp/img_check.sh
-  ignore_errors: yes
