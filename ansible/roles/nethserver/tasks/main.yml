@@ -23,6 +23,18 @@
     dest: /var/lib/cloud/scripts/per-once/
     mode: 0755
 
+- name: Create systemd override dir for Cockpit
+  file:
+    path: /etc/systemd/system/cockpit.service.d
+    state: directory
+    mode: '0755'
+
+- name: Copy systemd override for Cockpit
+  copy:
+    src: digitalocean.conf
+    dest: /etc/systemd/system/cockpit.service.d
+    mode: 0644
+
 - name: Remove clud-init per-once sem
   file:
     path: /var/lib/cloud/sem/config_scripts_per_once.once
