@@ -35,7 +35,7 @@
     dest: /etc/systemd/system/cockpit.service.d
     mode: 0644
 
-- name: Remove clud-init per-once sem
+- name: Remove cloud-init per-once sem
   file:
     path: /var/lib/cloud/sem/config_scripts_per_once.once
     state: absent
