@@ -1,8 +1,38 @@
-#! /bin/bash
+#!/bin/bash
 
+#Configure IPv4 Link-Local address
+ifconfig eth0 169.254.$((1 + $RANDOM % 254)).$(($RANDOM % 254)) netmask 255.255.0.0 up
+
+#Fetch the configurations from DigitalOcean's Metadata service
+droplet_metadata=$(curl -s http://169.254.169.254/metadata/v1.json)
+
+public_ipv4_address=$(echo $droplet_metadata | jq -r '.interfaces.public[0].ipv4.ip_address')
+public_ipv4_netmask=$(echo $droplet_metadata | jq -r '.interfaces.public[0].ipv4.netmask')
+public_ipv4_gateway=$(echo $droplet_metadata | jq -r '.interfaces.public[0].ipv4.gateway')
+
+private_ipv4_address=$(echo $droplet_metadata | jq -r '.interfaces.private[0].ipv4.ip_address')
+private_ipv4_netmask=$(echo $droplet_metadata | jq -r '.interfaces.private[0].ipv4.netmask')
+
+dns_nameservers=$(echo $droplet_metadata | jq -r '.dns.nameservers | join(",")')
+
+#Reset networks configuration
 > /var/lib/nethserver/db/networks
 
-/etc/e-smith/events/actions/nethserver-base-initialize-db
+/sbin/e-smith/db networks set eth0 ethernet \
+	role green \
+	bootproto none \
+	ipaddr $public_ipv4_address \
+	netmask $public_ipv4_netmask \
+	gateway $public_ipv4_gateway
+
+/sbin/e-smith/db networks set eth1 ethernet \
+	role green \
+	bootproto none \
+	ipaddr $private_ipv4_address \
+	netmask $private_ipv4_netmask
+
+/sbin/e-smith/config setprop dns NameServers $dns_nameservers
+
 /sbin/e-smith/signal-event interface-update
 
 /sbin/e-smith/signal-event hostname-modify
